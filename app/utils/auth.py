@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 
 
-def authenticate():
+def authenticate() -> dict:
     load_dotenv()
 
     # Load default SSL certificates and create an SSL context
@@ -35,17 +35,12 @@ def authenticate():
 
         try:
             response = http.request("POST", url, body=payload, headers=headers)
-            print(response.status)
 
             # Decode the response data to JSON
             response_data = json.loads(response.data.decode("utf-8"))
-            print(response_data)  # Print the entire response for debugging
 
-            # Extract the access token, if present
-            access_token = response_data.get("access_token")
-
-            if access_token:
-                print("Access Token:", access_token)
+            if response_data:
+                return response_data
             else:
                 print("Access token not found in the response.")
 
