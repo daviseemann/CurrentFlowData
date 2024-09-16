@@ -9,6 +9,8 @@ years = range(2000, 2025)
 # Gerar lista de URLs para os anos especificados
 urls = [f'{url_base}{year}.csv' for year in years]
 
+download_dir = './csv_files'
+
 # Função para baixar o CSV da URL
 def download_csv(url):
     # Fazer a requisição HTTP para a URL
@@ -16,7 +18,10 @@ def download_csv(url):
     # Verificar se a requisição foi bem-sucedida
     response.raise_for_status()
     # Ler o conteúdo da resposta diretamente como um DataFrame pandas
-    return pd.read_csv(url)
+    df = pd.read_csv(url)
+    filename = os.path.join(download_dir, url.split("/")[-1])
+    df.to_csv(filename, index=False)
+    return df
 
 # Lista para armazenar todos os DataFrames
 data_frames = []
