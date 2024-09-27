@@ -28,4 +28,4 @@ urls = [f"{url_base}CARGA_ENERGIA_{year}.csv" for year in years]
 etags_df = load_etags_db(cursor)
 
 # Process and download the files if ETags are new/changed
-process_urls(urls, save_dir="data/", etags_df=etags_df)
+process_urls(urls, save_dir="../data/", etags_df=etags_df)

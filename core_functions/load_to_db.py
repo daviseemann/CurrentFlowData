@@ -15,7 +15,7 @@ db_connection = db_connect()
 cursor = db_connection.cursor()
 
 # Step 2: Process all files in the 'data/' directory
-process_and_load_files(cursor, db_connection, file_dir="data/")
+process_and_load_files(cursor, db_connection, file_dir="../data/")
 
 # Step 3: Close the cursor and connection when done
 cursor.close()
